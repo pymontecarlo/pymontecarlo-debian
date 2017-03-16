@@ -78,7 +78,9 @@ class Casino2DebBuilder(DebBuilder):
                                    self.package, 'wincasino2_64.exe'))
 
         # Remove Boost license (added to copyright file)
-        shutil.rmtree(os.path.join(temp_dir, 'usr', 'share', self.package, 'licenses'))
+        licenses_dir = os.path.join(temp_dir, 'usr', 'share', self.package, 'licenses')
+        if os.path.exists(licenses_dir):
+            shutil.rmtree(licenses_dir)
 
         # Copy icon
         dst_dir = os.path.join(temp_dir, 'usr', 'share', 'icons',
